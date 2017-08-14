@@ -1,0 +1,76 @@
+	<!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+
+    <script>
+    	$(function(){
+    		$(".button-collapse").sideNav();
+    	});
+    	var interval;
+    	
+    	function stop(){
+    		clearInterval(interval);
+    	}
+
+    	function getData(){
+    		$.ajax({
+				type: "GET",
+				url: "http://localhost:8008/data",
+				crossDomain: true,
+				success: function(resp){
+					console.log(resp);
+					refreshTable(resp);
+				},
+				error: function(resp){
+					console.log(resp);
+				}
+			});
+    	}
+
+    	function refreshTable(resp) {
+    		$("tbody").empty();
+    		var employees = "<tbody>";
+			$.each(resp.Logs, function(key, val){
+				employees += "<tr class=\"hoverable\">";
+				$.each(val, function(key1, val1){
+					employees += "<td>"+ val1 + "</td>";
+				});
+				employees += "</tr>";
+			});
+			employees +="</tbody>";
+			$(".table").append(employees);
+			Materialize.toast('Updated!', 2000, 'rounded');
+			return false;
+		}
+
+    	function start(){
+			var request;
+			var i=0;
+    		interval = setInterval(function(){
+    			var text = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    			console.log(text);
+    			request = {
+    				id: i,
+    				user: "Sravan"+i,
+					msg: text
+				};
+				$.ajax({
+					type: "POST",
+					url: "http://localhost:8008/queue",
+					data: request,
+					crossDomain: true,
+					success: function(resp){
+						console.log(resp);
+					},
+					error: function(resp){
+						console.log(resp);
+					}
+				});
+				Materialize.toast('Added!', 2000, 'rounded');
+				i = i+1;
+    		}, 1000);
+
+		}
+    </script>
+</body>
+</html>
