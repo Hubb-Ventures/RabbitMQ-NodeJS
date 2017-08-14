@@ -1,0 +1,11 @@
+{
+  "Logs": [
+    {
+      "id": 1,
+      "user": "Sravan",
+      "msg": "Something",
+      "tmstmp": "2017-05-23T02:43:02.082Z",
+      "waitTime": 23
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "rabbitMQ",
+  "version": "1.0.0",
+  "description": "this is a test application which uses rabbitMQ for REST API calls",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "Sravan nerella",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.5.1",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "jsonwebtoken": "^7.4.1",
+    "nodemon": "^1.11.0",
+    "request": "^2.81.0"
+  },
+  "devDependencies": {}
+}
